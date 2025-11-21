@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{ca48024b-8593-48f1-9ff3-6a13c756f7f8}</ProjectGuid>
-    <RootNamespace>FirstLesson</RootNamespace>
+    <ProjectGuid>{399d1b57-f479-4208-ba4c-adfd94602ef5}</ProjectGuid>
+    <RootNamespace>Rekenmachine</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -123,7 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="First_Lesson.cpp" />
+    <ClCompile Include="Reken_machine.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
