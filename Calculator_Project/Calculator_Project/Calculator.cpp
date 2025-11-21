@@ -2,7 +2,7 @@
 
 Calculator::Calculator()
 {
-	
+	std::cout << "My super duper awesome calculator";
 }
 
 Calculator::~Calculator()
