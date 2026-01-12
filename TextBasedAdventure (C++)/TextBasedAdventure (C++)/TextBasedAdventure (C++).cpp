@@ -4,7 +4,8 @@
 
 int main()
 {
-	//Attack SlashAttack("Slash", 25.0f); Example of creating an attack object
+	//Attack SlashAttack("Slash", 25.0f); 
+	//Example of creating an attack object
 
 	Game game;
 	while(true) {
@@ -12,6 +13,4 @@ int main()
 
 
 	}
-
-	//will never reach this point unless i break the loop
 }
