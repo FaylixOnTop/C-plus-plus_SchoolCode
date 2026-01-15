@@ -4,13 +4,12 @@
 
 int main()
 {
-	//Attack SlashAttack("Slash", 25.0f); 
+	Attack SlashAttack("Slash", 25.0f); 
 	//Example of creating an attack object
 
 	Game game;
 	while(true) {
 		game.Update();
-
 
 	}
 }
