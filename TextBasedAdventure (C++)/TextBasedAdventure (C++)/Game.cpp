@@ -8,6 +8,10 @@ Game::Game()
 {
 	player = nullptr;
 	hasPlayer = false;
+
+	npcs.push_back(new Player("Goblin"));
+	npcs.push_back(new Player("Orc"));
+	npcs.push_back(new Player("Dragon"));
 }
 
 Game::~Game()
