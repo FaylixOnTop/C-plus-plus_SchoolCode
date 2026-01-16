@@ -1,4 +1,5 @@
 #include "Game.h"
+#include <iostream>
 
 int main()
 {
@@ -7,4 +8,5 @@ int main()
     {
         game.Update();
     }
+    return 0;
 }
