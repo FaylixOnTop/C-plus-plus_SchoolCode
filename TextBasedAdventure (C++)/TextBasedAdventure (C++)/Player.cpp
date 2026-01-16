@@ -1,6 +1,6 @@
 #include "Player.h"
 
-int Player::playerHealth()
+bool Player::playerHealth()
 {
 	return 0;
 }

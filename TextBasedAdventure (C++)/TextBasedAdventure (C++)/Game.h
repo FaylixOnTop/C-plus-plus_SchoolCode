@@ -16,5 +16,4 @@ private:
 
     Player* player = nullptr;
     bool hasPlayer = false;
-    std::vector<Player*> npcs;
 };
