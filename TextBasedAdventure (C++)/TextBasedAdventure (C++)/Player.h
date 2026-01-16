@@ -1,22 +1,17 @@
 #pragma once
-#include <iostream>
 #include <string>
-
 
 class Player
 {
 public:
-	Player(std::string aName);
-	~Player();
+    explicit Player(const std::string& name);
 
-	bool IsAlive() const;
-	float GetHealth() const;
-	void TakeDamage(float damage);
-	const std::string& GetName() const;
-
+    bool IsAlive() const;
+    float GetHealth() const;
+    void TakeDamage(float damage);
+    const std::string& GetName() const;
 
 private:
-	float health;
-	std::string name;
+    float health = 100.0f;
+    std::string name;
 };
-

@@ -1,21 +1,15 @@
 #pragma once
-#include <iostream>
+#include <string>
 
 class Attack
 {
 public:
-	Attack(std::string aName, float someDamage);
-	~Attack();
+    Attack(const std::string& name, float damage);
 
-	std::string GetName();
-	float GetDamage();
-
-
-	void SetName(std::string aName);
-	void SetDamage(float someDamage);
+    const std::string& GetName() const;
+    float GetDamage() const;
 
 private:
-	std::string name;
-	float damage;
+    std::string name;
+    float damage;
 };
-

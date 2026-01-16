@@ -1,20 +1,20 @@
 #pragma once
-#include "Player.h"
 #include <vector>
+#include "Player.h"
 
 class Game
 {
-public: //Data can be accessed by any class
-	Game();
-	~Game();
+public:
+    Game();
+    ~Game();
 
-	void Update();
+    void Update();
 
-private: //Data can only be accessed by this class
-	void AskPlayerName();
-	Player* player;
-	bool hasPlayer;
+private:
+    void AskPlayerName();
+    void PossibleAttacks();
 
-	std::vector<Player*> npcs;
+    Player* player = nullptr;
+    bool hasPlayer = false;
+    std::vector<Player*> npcs;
 };
-
