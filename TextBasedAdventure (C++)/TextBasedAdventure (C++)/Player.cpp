@@ -1,7 +1,8 @@
 #include "Player.h"
 
-bool Player::playerHealth() const
+bool Player::playerHealth(float aHealth) const
 {
-	std::cout << "Player health is currently : " << health << "\n";
-	return 0;
+	aHealth = health;
+
+	return health;
 }

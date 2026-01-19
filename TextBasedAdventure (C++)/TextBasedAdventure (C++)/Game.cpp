@@ -14,6 +14,7 @@ Game::Game()
 	std::srand(static_cast<unsigned>(std::time(nullptr)));
 
 	player = new Player();
+	player->playerHealth(100.0f);
 	AskPlayerName();
 
 	if (hasPlayer)
@@ -24,22 +25,22 @@ Game::Game()
 	}
 
 	npc enemy1;
-	enemy1.NpcHealth(100.0f);
-	enemy1.NpcDamage(5.0f, 15.0f);
-	enemy1.NpcDescription("A wild goblin appears!");
-	enemy1.NpcWeakness("Slash");
+	//enemy1.NpcHealth(100.0f);
+	//enemy1.NpcDamage(5.0f, 15.0f);
+	//enemy1.NpcDescription("A wild goblin appears!");
+	//enemy1.NpcWeakness("Slash");
 
 	npc enemy2;
-	enemy2.NpcHealth(120.0f);
-	enemy2.NpcDamage(10.0f, 20.0f);
-	enemy2.NpcDescription("enemy 2 has appeared");
-	enemy2.NpcWeakness("Fireball");
+	//enemy2.NpcHealth(120.0f);
+	//enemy2.NpcDamage(10.0f, 20.0f);
+	//enemy2.NpcDescription("enemy 2 has appeared");
+	//enemy2.NpcWeakness("Fireball");
 	
 	npc boss;
-	boss.NpcHealth(200.0f);
-	boss.NpcDamage(15.0f, 30.0f);
-	boss.NpcDescription("boss npc has appeared");
-	boss.NpcWeakness("RNG strike");
+	//boss.NpcHealth(200.0f);
+	//boss.NpcDamage(15.0f, 30.0f);
+	//boss.NpcDescription("boss npc has appeared");
+	//boss.NpcWeakness("RNG strike");
 }
 
 Game::~Game()
@@ -50,10 +51,15 @@ Game::~Game()
 
 void Game::Update()
 {
-	PossibleAttacks();
-	std::cin.get();
+	std::cout << "You are exploring the world...\n";
+	Sleep(1250);
+	std::cout << "When suddenly...\n";
+	Sleep(1250);
+	std::cout << "An enemy appears!\n";
 
-	std::cout << "You ran into the first enemy!\n" ;
+
+
+	PossibleAttacks();
 }
 
 void Game::AskPlayerName()
@@ -90,7 +96,8 @@ void Game::AskPlayerName()
 
 void Game::PossibleAttacks()
 {
-	std::cout << "Available Attacks! :\n";
+	Sleep(1000);
+	std::cout << "\nAvailable Attacks,\n";
 
 	Attack slash("Slash", 15.0f);
 	Attack fireball("Fireball", 10.0f);

@@ -22,6 +22,12 @@ bool npc::NpcDamage(float minDamage, float maxDamage)
 	return true;
 }
 
+bool npc::IsAlive(bool isNpcAlive) const
+{
+	isNpcAlive = isAlive;
+	return isAlive;
+}
+
 std::string npc::NpcWeakness(std::string aWeakness)
 {
 	// stores weakness

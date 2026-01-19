@@ -6,7 +6,7 @@ class Player
 {
 public:
 	bool hasPlayer = false;
-	bool playerHealth() const;
+	bool playerHealth(float aHealth) const;
 	
 
 
