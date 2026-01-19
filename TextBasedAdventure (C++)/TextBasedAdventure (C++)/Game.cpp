@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Game.h"
 #include "Player.h"
+#include "npc.h"
 #include "Attack.h"
 #include "Windows.h"
 
@@ -18,7 +19,13 @@ Game::Game()
 	if (hasPlayer)
 	{
 		std::cout << "The game is starting, Good luck\n";
+		Sleep(1500);
+		system("cls");
 	}
+
+	npc enemy1;
+	npc enemy2;
+	npc enemy3;
 }
 
 Game::~Game()
@@ -69,19 +76,19 @@ void Game::PossibleAttacks()
 {
 	std::cout << "Available Attacks! :\n";
 
-	Attack Slash("Slash", 15.0f);
-	Attack Fireball("Fireball", 10.0f);
+	Attack slash("Slash", 15.0f);
+	Attack fireball("Fireball", 10.0f);
 
 	// generate random damage between the existing variables
 	const int minDamage = 1;
 	const int maxDamage = 20;
 	int finalDamage = (std::rand() % (maxDamage - minDamage + 1)) + minDamage;
 
-	Attack RNG("RNG strike", static_cast<float>(finalDamage));
+	Attack rng("RNG strike", static_cast<float>(finalDamage));
 
-	std::cout << "1. " << Slash.GetName() << " - Damage: " << Slash.GetDamage();
-	std::cout << "\n2. " << Fireball.GetName() << " - Damage: " << Fireball.GetDamage();
-	std::cout << "\n3. " << RNG.GetName() << " - Damage: " << RNG.GetDamage() << std::endl;
+	std::cout << "1. " << slash.GetName() << " - Damage: " << slash.GetDamage();
+	std::cout << "\n2. " << fireball.GetName() << " - Damage: " << fireball.GetDamage();
+	std::cout << "\n3. " << rng.GetName() << " - Damage: " << rng.GetDamage() << std::endl;
 
 	char attackChoice;
 	std::cout << "Choose your attack : ";
@@ -90,21 +97,21 @@ void Game::PossibleAttacks()
 	switch (attackChoice) {
 	case '1':
 		system("cls");
-		std::cout << "You used " << Slash.GetName() << " and dealt " << Slash.GetDamage() << " damage!\n";
+		std::cout << "You used " << slash .GetName() << " and dealt " << slash.GetDamage() << " damage!\n";
 		Sleep(1500);
 		system("cls");
 		break;
 
 	case '2':
 		system("cls");
-		std::cout << "You used " << Fireball.GetName() << " and dealt " << Fireball.GetDamage() << " damage!\n";
+		std::cout << "You used " << fireball.GetName() << " and dealt " << fireball.GetDamage() << " damage!\n";
 		Sleep(1500);
 		system("cls");
 		break;
 
 	case '3':
 		system("cls");
-		std::cout << "You used " << RNG.GetName() << " and dealt " << RNG.GetDamage() << " damage!\n";
+		std::cout << "You used " << rng.GetName() << " and dealt " << rng.GetDamage() << " damage!\n";
 		Sleep(1500);
 		system("cls");
 		break;
