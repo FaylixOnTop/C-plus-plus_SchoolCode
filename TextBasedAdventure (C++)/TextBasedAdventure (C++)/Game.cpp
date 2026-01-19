@@ -6,6 +6,11 @@ Game::Game()
 {
 	player = new Player();
 	AskPlayerName();
+
+	if (hasPlayer)
+	{
+		std::cout << "The game is starting, Good luck\n";
+	}
 }
 
 Game::~Game()
@@ -15,41 +20,43 @@ Game::~Game()
 
 void Game::Update()
 {
-	if (hasPlayer == true)
-	{
-		std::cout << "The game is starting..." << std::endl;
-		std::cout << "Here are your possible attacks:" << std::endl;
-		std::cin.get();
-	}
+	std::cout << "These are all of the possible attacks you can do:\n";
+	PossibleAttacks();
 }
 
 void Game::AskPlayerName()
 {
-	std::string inputName;
-	std::cout << "What is your name?" << std::endl;
-	std::cin >> inputName;
-	system("cls");
-
-	std::cout << "Are you sure " << inputName << " is your name? (Y/N)" << std::endl;
-	char nameConfirmation;
-	std::cin >> nameConfirmation;
-
 	do
 	{
-		std::cout << "Confirm name? (Y/N): ";
+		std::string inputName;
+		std::cout << "What is your name?" << std::endl;
+		std::cin >> inputName;
+		system("cls");
+
+		std::cout << "Are you sure " << inputName << " is your name? (Y/N)" << std::endl;
+		char nameConfirmation;
 		std::cin >> nameConfirmation;
 
 		if (nameConfirmation == 'n' || nameConfirmation == 'N')
-			return;
+		{
+			system("cls");
+			AskPlayerName();
+		}
 		else if (nameConfirmation == 'y' || nameConfirmation == 'Y')
+		{
 			hasPlayer = true;
+			std::cout << "Welcome, " << inputName << "!\n";
+			system("cls");
+		}
 		else
-			std::cout << "Please enter Y or N." << std::endl;
+		{
+			std::cout << "Please enter Y or N.\n";
+			system("cls");
+		}
 	} while (!hasPlayer);
-
-	std::cout << "Welcome, " << inputName << "!" << std::endl;
 }
 
 void Game::PossibleAttacks()
 {
+
 }
