@@ -1,11 +1,12 @@
 #pragma once
 #include <string>
+#include <iostream>
 
 class Player
 {
 public:
 	bool hasPlayer = false;
-	bool playerHealth();
+	bool playerHealth() const;
 	
 
 
