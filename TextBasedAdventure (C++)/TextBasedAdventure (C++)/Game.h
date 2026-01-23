@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Player.h"
+#include "npc.h"
 
 class Game
 {
@@ -13,6 +14,10 @@ public:
 private:
     void AskPlayerName();
     void PossibleAttacks();
+
+    npc tabbyCat;
+    npc cheetah;
+    npc tiger;
 
     Player* player = nullptr;
     bool hasPlayer = false;

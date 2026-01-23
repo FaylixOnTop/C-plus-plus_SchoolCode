@@ -4,23 +4,27 @@
 class npc
 {
 public:
-	bool NpcHealth(float someHealth) const;
-	bool NpcDamage(float minDamage, float maxDamage);
-	bool IsAlive(bool isNpcAlive) const;
+    void NpcHealth(float someHealth);
 
-	std::string NpcDescription(std::string aDescription);
-	std::string NpcWeakness(std::string aWeakness);
+    float NpcDamage(float minDamage, float maxDamage);
 
-	float ApplyWeaknessMultiplier(const std::string& attackName, float baseDamage) const;
+    bool IsAlive() const;
+
+    std::string NpcDescription(const std::string& aDescription);
+
+    void NpcWeakness(const std::string& aWeakness);
+
+    float ApplyWeaknessMultiplier(const std::string& attackName, float baseDamage) const;
+
+    float GetHealth() const;
+    void ApplyDamage(float dmg);
 
 private:
-	bool isAlive = true;
-
-	std::string name;
-	float health = 100.0f;
-	float damage = 10.0f;
-
-	std::string weakness;
-	std::string description;
+    bool isAlive = true;
+    std::string name;
+    float health = 100.0f;
+    float damage = 10.0f;
+    std::string weakness;
+    std::string description;
 };
 

@@ -5,14 +5,13 @@
 class Player
 {
 public:
-	bool hasPlayer = false;
-	bool playerHealth(float aHealth) const;
-	
+    bool hasPlayer = false;
 
-
+    void SetHealth(float aHealth);
+    float GetHealth() const;
+    void ApplyDamage(float dmg);
 
 private:
-	std::string name;
-	float health = 100.0f;
-
+    std::string name;
+    float health = 100.0f;
 };

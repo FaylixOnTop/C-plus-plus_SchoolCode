@@ -1,54 +1,70 @@
 #include "npc.h"
-#include "Attack.h"
 #include <random>
 #include <iostream>
 
-bool npc::NpcHealth(float someHealth) const
+void npc::NpcHealth(float someHealth)
 {
-	return (someHealth == health);
+    health = someHealth;
+    isAlive = (health > 0.0f);
 }
 
-bool npc::NpcDamage(float minDamage, float maxDamage)
+float npc::NpcDamage(float minDamage, float maxDamage)
 {
-	// static threadlocal random seed per thread
-	static thread_local std::mt19937 rng(std::random_device{}());
-	std::uniform_real_distribution<float> dist(minDamage, maxDamage);
+    static thread_local std::mt19937 rng(std::random_device{}());
+    std::uniform_real_distribution<float> dist(minDamage, maxDamage);
 
-	float finalDamage = dist(rng);
-	std::cout << "NPC deals " << finalDamage << " damage\n";
+    float finalDamage = dist(rng);
+    damage = finalDamage;
 
-	damage = finalDamage;
-
-	return true;
+    std::cout << "NPC deals " << finalDamage << " damage\n";
+    return finalDamage;
 }
 
-bool npc::IsAlive(bool isNpcAlive) const
+bool npc::IsAlive() const
 {
-	isNpcAlive = isAlive;
-	return isAlive;
+    return isAlive && (health > 0.0f);
 }
 
-std::string npc::NpcWeakness(std::string aWeakness)
+std::string npc::NpcDescription(const std::string& aDescription)
 {
-	// stores weakness
-	weakness = aWeakness;
-	return weakness;
+    description = aDescription;
+    std::cout << description << "\n";
+    return description;
+}
+
+void npc::NpcWeakness(const std::string& aWeakness)
+{
+    weakness = aWeakness;
 }
 
 float npc::ApplyWeaknessMultiplier(const std::string& attackName, float baseDamage) const
 {
-	// if attackname matches weakness, apply multiplier
-	if (!weakness.empty() && attackName == weakness)
-	{
-		return baseDamage * 1.5f;
-		std::cout << "It's super effective! Damage increased to " << (baseDamage * 1.5f) << "\n";
-	}
+    if (attackName == weakness)
+    {
+        float increased = baseDamage * 1.5f;
+        std::cout << "It's super effective! Damage increased to " << increased << "\n";
+        return increased;
+    }
 
-	return baseDamage;
+    return baseDamage;
 }
 
-std::string npc::NpcDescription(std::string aDescription)
+float npc::GetHealth() const
 {
-	description = aDescription;
-	return description;
+    return health;
+}
+
+void npc::ApplyDamage(float dmg)
+{
+    health -= dmg;
+    if (health <= 0.0f)
+    {
+        health = 0.0f;
+        isAlive = false;
+        std::cout << "The NPC has been defeated!\n";
+    }
+    else
+    {
+        std::cout << "NPC health is now " << health << "\n";
+    }
 }

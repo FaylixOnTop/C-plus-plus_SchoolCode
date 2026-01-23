@@ -1,8 +1,26 @@
 #include "Player.h"
+#include <iostream>
 
-bool Player::playerHealth(float aHealth) const
+void Player::SetHealth(float aHealth)
 {
-	aHealth = health;
+    health = aHealth;
+}
 
-	return health;
+float Player::GetHealth() const
+{
+    return health;
+}
+
+void Player::ApplyDamage(float dmg)
+{
+    health -= dmg;
+    if (health <= 0.0f)
+    {
+        health = 0.0f;
+        std::cout << "You have been defeated!\n";
+    }
+    else
+    {
+        std::cout << "Your health is now " << health << "\n";
+    }
 }
