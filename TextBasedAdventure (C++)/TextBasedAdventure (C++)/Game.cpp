@@ -43,8 +43,10 @@ Game::~Game()
 void Game::Update()
 {
     bool tabbyActive = false;
-    bool cheetah = false;
-    bool tiger = false;
+    bool cheetahActive = false;
+    bool tigerActive = false;
+
+	bool endScene = false;
 
     std::cout << "You are exploring the cat world...\n";
     Sleep(1250);
@@ -57,14 +59,15 @@ void Game::Update()
     while (tabbyActive)
     {
         system("cls");
-        std::cout << "You are fighting the tabby cat!\n";
+        std::cout << playerName << ", You are fighting the tabby cat!\n";
 
         PossibleAttacks();
 
         if (!tabbyCat.IsAlive())
         {
-            tabbyActive = false;
-            break;
+            player->SetHealth(100.0f);
+            cheetahActive = true;
+			tabbyActive = false;
         }
 
         if (player->GetHealth() <= 0.0f)
@@ -75,44 +78,45 @@ void Game::Update()
         }
     }
 
-    while (cheetah == true)
+    while (cheetahActive == true)
     {
         system("cls");
-        std::cout << "You are fighting the cheetah!\n";
+        std::cout << playerName << ", You are fighting the cheetah!\n";
 
         PossibleAttacks();
 
-        if (!tabbyCat.IsAlive())
+        if (!cheetah.IsAlive())
         {
-            cheetah = false;
-            break;
+            player->SetHealth(100.0f);
+			tigerActive = true;
+            cheetahActive = false;
         }
 
         if (player->GetHealth() <= 0.0f)
         {
             std::cout << "Game Over\n";
-            cheetah = false;
+            cheetahActive = false;
             break;
         }
     }
 
-    while (tiger == true)
+    while (tigerActive == true)
     {
         system("cls");
-        std::cout << "You are fighting the tiger!\n";
+        std::cout << playerName << ", You are fighting the tiger!\n";
 
         PossibleAttacks();
 
-        if (!tabbyCat.IsAlive())
+        if (!tiger.IsAlive())
         {
-            tiger = false;
-            break;
+            endScene = true;
+            tigerActive = false;
         }
 
         if (player->GetHealth() <= 0.0f)
         {
             std::cout << "Game Over\n";
-            tiger = false;
+            tigerActive = false;
             break;
         }
 	}
@@ -122,12 +126,11 @@ void Game::AskPlayerName()
 {
     do
     {
-        std::string inputName;
         std::cout << "What is your name?" << std::endl;
-        std::cin >> inputName;
+        std::cin >> playerName;
         system("cls");
 
-        std::cout << "Are you sure " << inputName << " is your name? (Y/N)" << std::endl;
+        std::cout << "Are you sure " << playerName << " is your name? (Y/N)" << std::endl;
         char nameConfirmation;
         std::cin >> nameConfirmation;
 
@@ -139,7 +142,7 @@ void Game::AskPlayerName()
         else if (nameConfirmation == 'y' || nameConfirmation == 'Y')
         {
             hasPlayer = true;
-            std::cout << "Welcome, " << inputName << "!\n";
+            std::cout << "Welcome, " << playerName << "!\n";
             system("cls");
         }
         else
@@ -212,6 +215,32 @@ void Game::PossibleAttacks()
         const int npcMin = 1;
         const int npcMax = 25;
         float npcDamage = tabbyCat.NpcDamage(static_cast<float>(npcMin), static_cast<float>(npcMax));
+
+        // apply damage to player
+        player->ApplyDamage(npcDamage);
+
+        Sleep(3500);
+        system("cls");
+    }
+
+    if (cheetah.IsAlive())
+    {
+        const int npcMin = 10;
+        const int npcMax = 30;
+        float npcDamage = cheetah.NpcDamage(static_cast<float>(npcMin), static_cast<float>(npcMax));
+
+        // apply damage to player
+        player->ApplyDamage(npcDamage);
+
+        Sleep(3500);
+        system("cls");
+    }
+
+    if (tiger.IsAlive())
+    {
+        const int npcMin = -5;
+        const int npcMax = 40;
+        float npcDamage = cheetah.NpcDamage(static_cast<float>(npcMin), static_cast<float>(npcMax));
 
         // apply damage to player
         player->ApplyDamage(npcDamage);

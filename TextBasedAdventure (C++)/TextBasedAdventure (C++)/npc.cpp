@@ -41,7 +41,7 @@ float npc::ApplyWeaknessMultiplier(const std::string& attackName, float baseDama
 {
     if (attackName == weakness)
     {
-        float increased = baseDamage * 1.5f;
+        float increased = baseDamage * 2.5f;
         std::cout << "It's super effective! Damage increased to " << increased << "\n";
         return increased;
     }

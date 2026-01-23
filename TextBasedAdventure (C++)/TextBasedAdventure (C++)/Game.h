@@ -15,6 +15,8 @@ private:
     void AskPlayerName();
     void PossibleAttacks();
 
+    std::string playerName;
+
     npc tabbyCat;
     npc cheetah;
     npc tiger;
