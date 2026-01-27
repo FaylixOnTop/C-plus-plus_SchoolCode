@@ -10,7 +10,7 @@
 
 Game::Game()
 {
-    // seed rand() once per program run different every time based on current time
+    // seed rand() once per program run different every time based on time
     std::srand(static_cast<unsigned>(std::time(nullptr)));
 
     player = new Player();
@@ -61,7 +61,7 @@ void Game::Update()
         system("cls");
         std::cout << playerName << ", You are fighting the tabby cat!\n";
 
-        PossibleAttacks();
+        PossibleAttacks(tabbyCat);
 
         if (!tabbyCat.IsAlive())
         {
@@ -83,7 +83,7 @@ void Game::Update()
         system("cls");
         std::cout << playerName << ", You are fighting the cheetah!\n";
 
-        PossibleAttacks();
+        PossibleAttacks(cheetah);
 
         if (!cheetah.IsAlive())
         {
@@ -105,7 +105,7 @@ void Game::Update()
         system("cls");
         std::cout << playerName << ", You are fighting the tiger!\n";
 
-        PossibleAttacks();
+        PossibleAttacks(tiger);
 
         if (!tiger.IsAlive())
         {
@@ -153,7 +153,7 @@ void Game::AskPlayerName()
     } while (!hasPlayer);
 }
 
-void Game::PossibleAttacks()
+void Game::PossibleAttacks(npc& currentNpc)
 {
     Sleep(1000);
     std::cout << "\nWhat would you like to try?\n";
@@ -161,7 +161,7 @@ void Game::PossibleAttacks()
     Attack slash("Slash", 15.0f);
     Attack fireball("Fireball", 10.0f);
 
-    // generate random damage between the existing variables
+    // generate random damage
     const int minDamage = -5;
     const int maxDamage = 20;
     int finalDamage = (std::rand() % (maxDamage - minDamage + 1)) + minDamage;
@@ -203,44 +203,36 @@ void Game::PossibleAttacks()
     system("cls");
     std::cout << "You used " << chosen->GetName() << " and dealt " << chosen->GetDamage() << " damage!\n";
 
-    // apply weakness multiplier
-    playerDealt = tabbyCat.ApplyWeaknessMultiplier(chosen->GetName(), chosen->GetDamage());
-    tabbyCat.ApplyDamage(playerDealt);
+    // apply weakness multiplier to the active npc
+    playerDealt = currentNpc.ApplyWeaknessMultiplier(chosen->GetName(), chosen->GetDamage());
+    currentNpc.ApplyDamage(playerDealt);
 
     Sleep(5000);
     system("cls");
 
-    if (tabbyCat.IsAlive())
+    if (currentNpc.IsAlive())
     {
-        const int npcMin = 1;
-        const int npcMax = 25;
-        float npcDamage = tabbyCat.NpcDamage(static_cast<float>(npcMin), static_cast<float>(npcMax));
+        int npcMin = 1;
+        int npcMax = 25;
 
-        // apply damage to player
-        player->ApplyDamage(npcDamage);
+        // attack for npcs (dmg)
+        if (&currentNpc == &tabbyCat)
+        {
+            npcMin = 1;
+            npcMax = 25;
+        }
+        else if (&currentNpc == &cheetah)
+        {
+            npcMin = 10;
+            npcMax = 30;
+        }
+        else if (&currentNpc == &tiger)
+        {
+            npcMin = -5;
+            npcMax = 40;
+        }
 
-        Sleep(3500);
-        system("cls");
-    }
-
-    if (cheetah.IsAlive())
-    {
-        const int npcMin = 10;
-        const int npcMax = 30;
-        float npcDamage = cheetah.NpcDamage(static_cast<float>(npcMin), static_cast<float>(npcMax));
-
-        // apply damage to player
-        player->ApplyDamage(npcDamage);
-
-        Sleep(3500);
-        system("cls");
-    }
-
-    if (tiger.IsAlive())
-    {
-        const int npcMin = -5;
-        const int npcMax = 40;
-        float npcDamage = cheetah.NpcDamage(static_cast<float>(npcMin), static_cast<float>(npcMax));
+        float npcDamage = currentNpc.NpcDamage(static_cast<float>(npcMin), static_cast<float>(npcMax));
 
         // apply damage to player
         player->ApplyDamage(npcDamage);

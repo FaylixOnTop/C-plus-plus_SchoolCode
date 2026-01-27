@@ -13,7 +13,7 @@ public:
 
 private:
     void AskPlayerName();
-    void PossibleAttacks();
+    void PossibleAttacks(npc& currentNpc);
 
     std::string playerName;
 
